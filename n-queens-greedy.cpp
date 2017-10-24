@@ -41,14 +41,14 @@ int main (int argc, char * argv[]) {
     init_board(board, N, queens);
 
     update_board(board, N, queens);
-    curr = get_lowest (board, N, minimums);
+    curr = get_lowest(board, N, minimums);
 
     do {
         put_lowest(board, N, minimums, queens);
         update_board(board, N, queens);
 
         last = curr;
-        curr = get_lowest (board, N, minimums);
+        curr = get_lowest(board, N, minimums);
 
         if (curr >= last)
             tries--;
@@ -59,7 +59,7 @@ int main (int argc, char * argv[]) {
             tries = N / 2;
         }
 
-    } while (!is_solution (board, N, queens));
+    } while (!is_solution(board, N, queens));
     print_board(board, N);
 
     /* Clean up */
@@ -148,7 +148,7 @@ void put_lowest (Board & board, const int N, const Locations & mins, Locations &
             queens[row]->r = row;
             queens[row]->c = col;
 
-            h_function(board, N, Pair(row, c)); // Remove old queen
+            board[row][c] = 0;                  // Remove old queen
             break;
         }
 }
