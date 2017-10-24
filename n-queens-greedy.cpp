@@ -21,7 +21,6 @@ void update_board (Board & board, const int N, const Locations & queens);
 //////////////
 
 int main (int argc, char * argv[]) {
-
     assert(argc >= 3 && "Two command line arguements must be supplied for N and seed.");
     srand(atoi(argv[2]));
 
@@ -54,7 +53,7 @@ int main (int argc, char * argv[]) {
         if (curr >= last)
             tries--;
 
-        /* If we can't improve after 5 attempts, try a new random board. */
+        /* If we can't improve after N / 2 attempts, try a new random board. */
         if (!tries) {
             init_board(board, N, queens);
             tries = N / 2;
@@ -97,11 +96,10 @@ int h_function (const Board & board, const int N, const Pair & location) {
 }
 
 void update_board (Board & board, const int N, const Locations & queens) {
-    int count;
+    int count = 0;
 
     /* For ever row, calculate the heuristic value as if the queen was moved
        to every sqaure in that row */
-
     for (int r = 0; r < N; r++) {
         board[queens[r]->r][queens[r]->c] = 0;
         for (int c = 0; c < N; c++) {
@@ -120,13 +118,13 @@ int get_lowest (const Board & board, const int N, Locations & minimums) {
     int min = (board[0][0]) != -1 ? board[0][0] : board[0][1];
     minimums.clear();
 
-    /* Find the minimum on the board */
+    /* Find the minimum value on the board */
     for (int r = 0; r < N; r++)
         for (int c = 0; c < N; c++)
             if (board[r][c] < min && board[r][c] != -1)
                 min = board[r][c];
 
-    /* Find all the mimimums */
+    /* Find all the mimimums values */
     for (int r = 0; r < N; r++)
         for (int c = 0; c < N; c++)
             if (board[r][c] == min) {
@@ -146,12 +144,11 @@ void put_lowest (Board & board, const int N, const Locations & mins, Locations &
     /* Find the queen and replace it with an heuristic value */
     for (int c = 0; c < N; c++)
         if (board[row][c] == -1) {
-            h_function(board, N, Pair(row, c)); // old queen
-
-            board[row][col] = -1;               // new queen
+            board[row][col] = -1;               // Put new queen
             queens[row]->r = row;
             queens[row]->c = col;
 
+            h_function(board, N, Pair(row, c)); // Remove old queen
             break;
         }
 }
