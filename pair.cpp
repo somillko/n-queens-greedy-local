@@ -1,5 +1,6 @@
 #include "pair.h"
 
+
 void Pair::operator= (const Pair & p) {
     this->r = p.r;
     this->c = p.c;

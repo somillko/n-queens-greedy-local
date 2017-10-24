@@ -1,27 +1,24 @@
 /*
+Author:         Michael Schmidt
 
-
-
-
+Description:    Solve the N-Queens problem using greedy descent.
 */
 
-
+/* Includes */
 #include "globals.h"
-#include "pair.h"
 
 /* Prototypes */
-void init_board (Board & board, const int N, Locations & queens);
+int get_lowest (const Board & board, const int N, Locations & minimums);
 int h_function (const Board & board, const int N, const Pair & location);
 bool is_solution (const Board & board, const int N ,const Locations & queens);
 void print_board (const Board & board, const int N);
-void update_board (Board & board, const int N, const Locations & queens);
-int get_lowest (const Board & board, const int N, Locations & minimums);
+void init_board (Board & board, const int N, Locations & queens);
 void put_lowest (Board & board, const int N, const Locations & mins, Locations & queens);
+void update_board (Board & board, const int N, const Locations & queens);
 
-
-///////////////
-/* INT MAINT */
-///////////////
+//////////////
+/* INT MAIN */
+//////////////
 
 int main (int argc, char * argv[]) {
 
@@ -74,6 +71,10 @@ int main (int argc, char * argv[]) {
     return 0;
 }
 
+///////////////
+/* FUNCTIONS */
+///////////////
+
 int h_function (const Board & board, const int N, const Pair & location) {
     int count = 0;
 
@@ -93,27 +94,6 @@ int h_function (const Board & board, const int N, const Pair & location) {
             count++;
 
     return count;
-}
-
-bool is_solution (const Board & board, const int N, const Locations & queens) {
-    /* Check the heuristic for each queen */
-    for (int i = 0; i < N; i++)
-        if (h_function(board, N, queens[i]))
-            return false;
-
-    return true;
-}
-
-void print_board (const Board & board, const int N) {
-    /* Print the board: -1 are queens, everything else is blank */
-    for (int r = 0; r < N; r++) {
-        for (int c = 0; c < N; c++)
-            if (board[r][c] == -1)
-                cout <<"Q ";
-            else
-                cout << "- ";
-        cout << endl;
-    }
 }
 
 void update_board (Board & board, const int N, const Locations & queens) {
@@ -202,5 +182,26 @@ void init_board (Board & board, const int N, Locations & queens) {
                 queens.push_back(queen);
             }
         }
+    }
+}
+
+bool is_solution (const Board & board, const int N, const Locations & queens) {
+    /* Check the heuristic for each queen */
+    for (int i = 0; i < N; i++)
+        if (h_function(board, N, queens[i]))
+            return false;
+
+    return true;
+}
+
+void print_board (const Board & board, const int N) {
+    /* Print the board: -1 are queens, everything else is blank */
+    for (int r = 0; r < N; r++) {
+        for (int c = 0; c < N; c++)
+            if (board[r][c] == -1)
+                cout <<"Q ";
+            else
+                cout << "- ";
+        cout << endl;
     }
 }

@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <vector>
 #include <iostream>
+#include "pair.h"
 
 /* Using Statements */
 using std::cout;
@@ -24,4 +25,4 @@ typedef int Tile;
 typedef Tile** Board;
 typedef vector<PairPtr> Locations;
 
-#endif
+#endif  // !GLOBALS_H
