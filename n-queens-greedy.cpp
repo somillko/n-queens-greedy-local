@@ -21,7 +21,7 @@ void update_board (Board & board, const int N, const Locations & queens);
 //////////////
 
 int main (int argc, char * argv[]) {
-    assert(argc >= 3 && "Two command line arguements must be supplied for N and seed.");
+    assert(argc == 3 && "Two command line arguements must be supplied for N and seed.");
     srand(atoi(argv[2]));
 
     /* Constants */
