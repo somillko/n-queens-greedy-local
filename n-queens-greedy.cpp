@@ -171,14 +171,10 @@ void init_board (Board & board, const int N, Locations & queens) {
 
     /* Assign queens 1 per column randomly */
     for (int r = 0, i; r < N; r++) {
-        i = rand() % N;
-        for (int c = 0; c < N; c++) {
-            if (i == c) {
-                board[r][c] = -1;
-                PairPtr queen = new Pair(r,c);
-                queens.push_back(queen);
-            }
-        }
+        int c = rand() % N;
+        board[r][c] = -1;
+        PairPtr queen = new Pair(r,c);
+        queens.push_back(queen);
     }
 }
 
