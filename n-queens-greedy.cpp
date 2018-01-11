@@ -116,7 +116,7 @@ void update_board (Board & board, const int N, const Locations & queens) {
 }
 
 int get_lowest (const Board & board, const int N, Locations & minimums) {
-    int min = (board[0][0]) != -1 ? board[0][0] : board[0][1];
+    int min = (board[0][0] != -1) ? board[0][0] : board[0][1];
     minimums.clear();
 
     /* Find the minimum value on the board */
