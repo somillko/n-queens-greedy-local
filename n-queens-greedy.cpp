@@ -74,6 +74,7 @@ int main (int argc, char * argv[]) {
 /* FUNCTIONS */
 ///////////////
 
+/* Number of colliding queens */
 int h_function (const Board & board, const int N, const Pair & location) {
     int count = 0;
 

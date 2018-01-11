@@ -2,7 +2,7 @@ import numpy as np
 import random
 
 
-N = 15
+N = 8
 
 def h_function (board, N, location):
     count = 0
