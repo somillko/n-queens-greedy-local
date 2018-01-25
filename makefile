@@ -1,11 +1,11 @@
-all: n-queens-greedy
+all: n_queens_greedy
 
-n-queens-greedy: n-queens-greedy.o
-	g++ -O2 --std=c++11 n-queens-greedy.o -o n-queens-greedy
+n_queens_greedy: n_queens_greedy.o
+	g++ -O2 --std=c++11 n_queens_greedy.o -o n_queens_greedy
 
-n-queens-greedy.o: n-queens-greedy.cpp
-	g++ -O2 --std=c++11 -c n-queens-greedy.cpp
+n_queens_greedy.o: n_queens_greedy.cpp
+	g++ -O2 --std=c++11 -c n_queens_greedy.cpp
 
 clean:
-	rm n-queens-greedy
-	rm n-queens-greedy.o
+	rm n_queens_greedy
+	rm n_queens_greedy.o
